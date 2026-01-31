@@ -109,14 +109,50 @@ function getRandomTemplate(templates) {
 	return templates[Math.floor(Math.random() * templates.length)];
 }
 
-export async function travelSearch(query) {
+function analyzeContext(query, history) {
+	let lastCity = null;
+	let lastIntent = null;
+	
+	// Look for the last mentioned city in conversation
+	for (let i = history.length - 1; i >= 0; i--) {
+		const message = history[i];
+		if (message.type === 'user') {
+			const cityFound = detectCity(message.content);
+			if (cityFound) {
+				lastCity = cityFound;
+				break;
+			}
+		}
+	}
+	
+	// Check for contextual pronouns and references
+	const lowerQuery = query.toLowerCase();
+	const hasContextualWords = [
+		'ahí', 'allí', 'allá', 'ese lugar', 'esa ciudad',
+		'también', 'y', 'además', 'otra cosa',
+		'más', 'otros', 'otras'
+	].some(word => lowerQuery.includes(word));
+	
+	return {
+		lastCity,
+		lastIntent,
+		needsContext: hasContextualWords && !detectCity(query)
+	};
+}
+
+export async function travelSearch(query, conversationHistory = []) {
 	// Simulate processing time
 	await new Promise(resolve => setTimeout(resolve, 300));
 	
-	const city = detectCity(query);
+	// Check for contextual references
+	const context = analyzeContext(query, conversationHistory);
+	const city = detectCity(query) || context.lastCity;
 	const intent = detectIntent(query);
 	
 	if (!city) {
+		if (context.needsContext) {
+			return "🤔 ¿Te referís a la misma ciudad de tu pregunta anterior? Podés mencionar específicamente Madrid, Barcelona, Roma, Amsterdam, París, Venecia o Florencia para ayudarte mejor.";
+		}
 		return "🤔 No pude identificar la ciudad específica. ¿Podrías mencionar Madrid, Barcelona, Roma, Amsterdam, París, Venecia o Florencia?";
 	}
 	
@@ -124,7 +160,13 @@ export async function travelSearch(query) {
 	const templates = responseTemplates[intent];
 	const template = getRandomTemplate(templates);
 	
-	return template
+	// Add contextual prefix if continuing conversation
+	let prefix = '';
+	if (context.lastCity && context.lastCity === city && conversationHistory.length > 1) {
+		prefix = 'Siguiendo con ' + city.charAt(0).toUpperCase() + city.slice(1) + ':\n\n';
+	}
+	
+	return prefix + template
 		.replace(/{city}/g, city.charAt(0).toUpperCase() + city.slice(1))
 		.replace(/{attractions}/g, formatList(cityData.attractions.slice(0, 5)))
 		.replace(/{restaurants}/g, formatList(cityData.restaurants))

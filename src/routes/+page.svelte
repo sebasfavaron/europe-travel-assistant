@@ -51,8 +51,8 @@
 			// Simulate processing time for better UX
 			await new Promise(resolve => setTimeout(resolve, 500));
 			
-			// Get response from travel search
-			const response = await travelSearch(text);
+			// Get response from travel search with conversation history
+			const response = await travelSearch(text, messages);
 			
 			// Add assistant response
 			const assistantMessage = {
