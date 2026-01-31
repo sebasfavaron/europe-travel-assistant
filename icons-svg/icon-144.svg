@@ -1,0 +1,16 @@
+
+<svg width="144" height="144" viewBox="0 0 144 144" xmlns="http://www.w3.org/2000/svg">
+  <rect width="144" height="144" fill="#003399" rx="14.4"/>
+  <circle cx="72" cy="72" r="28.8" fill="none" stroke="#FFCC00" stroke-width="2.88"/>
+  <g fill="#FFCC00">
+    <circle cx="72" cy="43.199999999999996" r="2.88"/>
+    <circle cx="86.39999999999999" cy="50.4" r="2.88"/>
+    <circle cx="93.60000000000001" cy="72" r="2.88"/>
+    <circle cx="86.39999999999999" cy="93.60000000000001" r="2.88"/>
+    <circle cx="72" cy="100.8" r="2.88"/>
+    <circle cx="57.6" cy="93.60000000000001" r="2.88"/>
+    <circle cx="50.4" cy="72" r="2.88"/>
+    <circle cx="57.6" cy="50.4" r="2.88"/>
+  </g>
+  <text x="72" y="122.39999999999999" text-anchor="middle" font-family="Arial, sans-serif" font-size="14.4" fill="#FFCC00" font-weight="bold">TRAVEL</text>
+</svg>
