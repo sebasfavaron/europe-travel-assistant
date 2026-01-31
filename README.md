@@ -9,17 +9,17 @@ Preguntale cosas como:
 
 ## 🚀 Demo en Vivo
 
-**🌐 [Probar ahora](https://sebastianfavaron.github.io/europe-travel-assistant/)**
+**🌐 [Probar ahora](https://sebasfavaron.github.io/europe-travel-assistant/)**
 
 ## 📱 Instalación en tu Celular
 
 ### iPhone:
-1. Abre en Safari: https://sebastianfavaron.github.io/europe-travel-assistant/
+1. Abre en Safari: https://sebasfavaron.github.io/europe-travel-assistant/
 2. Toca "Compartir" → "Agregar a pantalla de inicio"
 3. ¡Listo! Funciona offline ✈️
 
 ### Android:
-1. Abre en Chrome: https://sebastianfavaron.github.io/europe-travel-assistant/
+1. Abre en Chrome: https://sebasfavaron.github.io/europe-travel-assistant/
 2. Toca menú (⋮) → "Instalar app" o "Agregar a pantalla de inicio"  
 3. ¡Listo! Funciona offline ✈️
 
